@@ -174,7 +174,7 @@
         ?>
       </div>
       <div class="content02">
-        <div class="item">
+        <div class="item ">
           <form action="?" method="get">
             <label for="month"></label>
             <input type="number" name='month' value="<?= date("m"); ?>">
