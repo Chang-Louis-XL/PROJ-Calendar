@@ -62,6 +62,10 @@
       background: pink;
     }
 
+    .othermday{
+      
+    }
+
     /* 以下為框架樣式 */
     * {
       box-sizing: border-box;
@@ -155,17 +159,18 @@
         $month = $_GET['month'] ?? date('m');
         $month = $_GET['year'] ?? date('Y');
         $year = date("Y");
-        echo "年" . $year;
-        echo "<BR>";
-        echo "月份:" . $month;
-        echo "<br>";
+        $m=
+        // echo "年" . $year;
+        // echo "<BR>";
+        // echo "月份:" . $month;
+        // echo "<br>";
         $firstDay = strtotime(date("Y-$month-1"));
         $firstWeekStartDay = date("w", $firstDay);
-        echo "第一周的開始是第" . $firstWeekStartDay . "日";
+        // echo "第一周的開始是第" . $firstWeekStartDay . "日";
         $days = date("t", $firstDay);
         $lastDay = strtotime(date("Y-$month-$days"));
-        echo "<br>";
-        echo "最後一天是" . date("Y-m-d", $lastDay);
+        // echo "<br>";
+        // echo "最後一天是" . date("Y-m-d", $lastDay);
         $birthday = '1974-4-1';
         $days = [];
         for ($i = 0; $i < 42; $i++) {
@@ -195,7 +200,10 @@
         foreach ($days as $day) {
           $format = explode("-", $day)[2];
           $w = date("w", strtotime($day));
-          if ($w == 0 || $w == 6) {
+          $m = date("m", strtotime($day));
+          if ($month!=$m){
+            echo "<div class= 'othermday'>$format</div>";
+          }else if($w == 0 || $w == 6) {
             echo "<div class='item holiday'>$format</div>";
           } else {
             echo "<div class='item'>";
