@@ -13,6 +13,10 @@
       box-sizing: border-box;
     }
 
+    body {
+      background-image: url('https://images.unsplash.com/photo-1506508618093-6fe5ce3def4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    }
+
     .container {
       width: 80%;
       margin: auto;
@@ -124,10 +128,10 @@
       background: pink;
     }
 
-    .othermday{
-    font-weight: bold;       
-    color: gray;  
-    opacity: 0.3;       
+    .othermday {
+      font-weight: bold;
+      color: gray;
+      opacity: 0.3;
     }
   </style>
 </head>
@@ -142,7 +146,7 @@
       <div class="leftbox">
       </div>
       <div class="rightbox">
-        <?php   
+        <?php
         $month = $_GET['month'] ?? date("m");
         $year = $_GET['year'] ?? date("Y");
         $firstDay = strtotime(date("$year-$month-1"));
@@ -200,7 +204,7 @@
           $format = explode("-", $day)[2];
           $w = date("w", strtotime($day));
           $m = date("m", strtotime($day));
-          if($month!=$m){
+          if ($month != $m) {
             echo "<div class='item othermday'>$format</div>";
           } else if ($w == 0 || $w == 6) {
             echo "<div class='item holiday'>$format</div>";
