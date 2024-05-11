@@ -14,19 +14,19 @@
         }
 
         body {
-            background-image: url('https://images.unsplash.com/photo-1506508618093-6fe5ce3def4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-image: url('https://images.unsplash.com/photo-1547044479-59ce6c0a784a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
         }
 
         .container {
             width: 60%;
             margin: auto;
-            margin-top: 30px;
+            margin-top: 15px;
             border: 1px solid transparent;
             border-radius: 60px;
             padding: 60px;
             background-color: #FEFEFE;
             box-shadow: 9px 11px 11px 3px black;
-
         }
 
 
@@ -43,62 +43,67 @@
             margin: 0;
             border-radius: 60px;
             box-shadow: 3px 4px 12px 0px #7A7567;
-            /* background: url(https://images.unsplash.com/photo-1520853538280-53740d2bd110?ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80); */
-            background-repeat: no-repeat;
+            background: url(https://picsum.photos/600/500?random=1)no-repeat center center;
             background-size: cover;
             width: 47%;
-            height: 650px;
-
-            background-color: aqua;
+            height: 600px;
+            /* background-color: aqua; */
 
         }
 
+
+
         .rightbox {
             width: 47%;
-            height: 650px;
-            background-color: lightgoldenrodyellow;
+            height: 600px;
+            /* background-color: lightgoldenrodyellow; */
 
         }
 
         .rightbox-top {
-            height: 70%;
-            background-color: aqua;
+            height: 85%;
+            /* background-color: aqua; */
+            margin: auto;
         }
 
         .calendar {
             width: 90;
-
             padding-left: 30px;
             padding-top: 30px;
             text-align: center;
-            background-color: yellowgreen;
+            /* background-color: yellowgreen; */
+            
         }
 
         .calendar-top {
             display: flex;
             justify-content: space-between;
-
-            background-color: pink;
+            /* background-color: pink; */
+            padding-top: 50px;
+            padding-bottom: 20px;
         }
 
         .nav1 {
-            background-color: yellow;
+            /* background-color: yellow; */
             text-align: left;
         }
 
         .nav2 {
-            background-color: red;
+            /* background-color: red; */
+            font-family: 'Itim', cursive;
+            font-weight: 600;
             text-align: center;
+            font-size: 24px;
         }
 
         .nav3 {
-            background-color: blue;
+            /* background-color: blue; */
             text-align: right;
         }
 
         .rightbox-bottom {
             height: 15%;
-            background-color: pink
+            /* background-color: pink */
         }
 
         /* 以下為萬年曆CSS */
@@ -106,8 +111,6 @@
             width: 380px;
             display: flex;
             flex-wrap: wrap;
-
-
         }
 
         .item {
@@ -169,7 +172,7 @@
             </div>
             <div class="rightbox">
                 <div class="rightbox-top">
-                    <div class="calendar">
+                    
                         <?php
                         $month = $_GET['month'] ?? date("m");
                         $year = $_GET['year'] ?? date("Y");
@@ -202,15 +205,22 @@
                         ?>
                         <div class="calendar-top">
                             <div class="nav1">
-                                <a href="test.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">上一個月</a>
+                                <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
+                                <img src="./images/left_submit_icon.png" alt="Previous" />
+                            </a>
                             </div>
                             <div class="nav2">
-                                <?= $year; ?>年 <?= $month; ?>月
+                                <?= $year; ?>-<?= $month; ?>
                             </div>
                             <div class="nav3">
-                                <a href="test.php?year=<?= $next_year; ?>&month=<?= $next; ?>">下一個月</a>
+                                <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
+                                <img src="./images/right_submit_icon.png" alt="Previous" />
+                            </a>
+
+                            
                             </div>
                         </div>
+                        <div class="calendar">
                         <?php
                         echo "<div class='block-table'>";
                         echo "<div class='item-header' style='color: red;'>Sun.</div>";
