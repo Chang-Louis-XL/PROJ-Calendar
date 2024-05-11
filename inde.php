@@ -1,35 +1,3 @@
-<?php
-          $month = $_GET['month'] ?? date("m");
-          $year = $_GET['year'] ?? date("Y");
-          $firstDay = strtotime(date("$year-$month-1"));
-          $firstWeekStartDay = date("w", $firstDay);
-          $days = date("t", $firstDay);
-          $lastDay = strtotime(date("Y-$month-$days"));
-
-          $days = [];
-          for ($i = 0; $i < 42; $i++) {
-            $diff = $i - $firstWeekStartDay;
-            $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
-          }
-
-          if ($month - 1 < 1) {
-            $prev = 12;
-            $prev_year = $year - 1;
-          } else {
-            $prev = $month - 1;
-            $prev_year = $year;
-          }
-
-          if ($month + 1 > 12) {
-            $next = 1;
-            $next_year = $year + 1;
-
-          } else {
-            $next = $month + 1;
-            $next_year = $year;
-          }
-
-          ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,24 +21,12 @@
       width: 60%;
       margin: auto;
       margin-top: 30px;
-      /* position: relative;
-      display: flex;
-      justify-content: space-between; */
       border: 1px solid transparent;
       border-radius: 60px;
       padding: 60px;
       background-color: #FEFEFE;
       box-shadow: 9px 11px 11px 3px black;
 
-      /* position: relative;
-      display: flex;
-      justify-content: space-between;
-      margin: auto;
-      margin-top: 50px;
-      border: 2px solid black;
-      border-radius: 25px;
-      padding: 15px;
-      position: relative; */
     }
 
 
@@ -85,7 +41,6 @@
 
     .leftbox {
       margin: 0;
-      /* border: 3px dotted #7F989E; */
       border-radius: 60px;
       box-shadow: 3px 4px 12px 0px #7A7567;
       /* background: url(https://images.unsplash.com/photo-1520853538280-53740d2bd110?ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80); */
@@ -96,38 +51,48 @@
 
       background-color: aqua;
 
-
-      /* position: absolute;
-      width: 49%;
-      height: 750px;
-      margin-right: 20px;
-      border: 2px solid black;
-      background-color: lightyellow; */
     }
 
     .rightbox {
       width: 47%;
       height: 650px;
-      display: flex;
-      flex-direction: column;
       background-color: lightgoldenrodyellow;
 
     }
 
     .rightbox-top {
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       height: 15%;
       background-color: gray
     }
 
-    .rightbox-middle {
-      height: 70%;
-      /* justify-content: center;
-      align-items: center; */
-      background-color: aqua;
-      margin: auto;
+    .nav1 {
+      background-color: yellow;
     }
 
-    .rightbox-tottom {
+    .nav2 {
+      background-color: red;
+    }
+
+    .nav3 {
+      background-color: blue;
+    }
+
+    .rightbox-middle {
+      height: 70%;
+      background-color: aqua;
+      text-align: center;
+    }
+
+    .rightbox-middle>.calendar {
+      
+    }
+
+
+    .rightbox-bottom {
       height: 15%;
       background-color: pink
     }
@@ -197,58 +162,105 @@
       <div class="leftbox">
       </div>
       <div class="rightbox">
-        
+
+        <?php
+        $month = $_GET['month'] ?? date("m");
+        $year = $_GET['year'] ?? date("Y");
+
+        if ($month - 1 < 1) {
+          $prev = 12;
+          $prev_year = $year - 1;
+        } else {
+          $prev = $month - 1;
+          $prev_year = $year;
+        }
+
+        if ($month + 1 > 12) {
+          $next = 1;
+          $next_year = $year + 1;
+
+        } else {
+          $next = $month + 1;
+          $next_year = $year;
+        }
+
+        ?>
+
         <div class="rightbox-top">
+          <div class="nav nav1">
+            <a href="test.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">上一個月</a>
+          </div>
+          <div class="nav nav2">
+            <?= $year; ?>年 <?= $month; ?>月
+          </div>
+          <div class="nav nav3">
+            <a href="test.php?year=<?= $next_year; ?>&month=<?= $next; ?>">下一個月</a>
+          </div>
         </div>
-   
 
         <div class="rightbox-middle">
-      
 
-          <div style="width:384px;">
-            <div class="nav" style="text-align: center;">
-              <?= $year; ?>年 <?= $month; ?>月
-            </div>
-            <div class="nav" style="text-align: left;">
-              <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">上一個月</a>
-            </div>
-            <div class="nav" style="text-align: right;">
-              <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">下一個月</a>
-            </div>
-          </div>
+          <div class="calendar">
+            <?php
+            $month = $_GET['month'] ?? date("m");
+            $year = $_GET['year'] ?? date("Y");
+            $firstDay = strtotime(date("$year-$month-1"));
+            $firstWeekStartDay = date("w", $firstDay);
+            $days = date("t", $firstDay);
+            $lastDay = strtotime(date("Y-$month-$days"));
 
-      
-    
-          <?php
-
-          echo "<div class='block-table'>";
-          echo "<div class='item-header' style='color: red;'>Sun.</div>";
-          echo "<div class='item-header'>Mon.</div>";
-          echo "<div class='item-header'>Tue.</div>";
-          echo "<div class='item-header'>Wed.</div>";
-          echo "<div class='item-header'>Thu.</div>";
-          echo "<div class='item-header'>Fri.</div>";
-          echo "<div class='item-header' style='color: red;'>Sat.</div>";
-          foreach ($days as $day) {
-            $format = explode("-", $day)[2];
-            $w = date("w", strtotime($day));
-            $m = date("m", strtotime($day));
-            if ($month != $m) {
-              echo "<div class='item othermday'>$format</div>";
-            } else if ($w == 0 || $w == 6) {
-              echo "<div class='item holiday'>$format</div>";
-            } else {
-
-              echo "<div class='item'>";
-              echo "<div class='date'>$format</div>";
-              echo "</div>";
+            $days = [];
+            for ($i = 0; $i < 42; $i++) {
+              $diff = $i - $firstWeekStartDay;
+              $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
             }
-          }
-          echo "</div>";
-          ?>
+
+            if ($month - 1 < 1) {
+              $prev = 12;
+              $prev_year = $year - 1;
+            } else {
+              $prev = $month - 1;
+              $prev_year = $year;
+            }
+
+            if ($month + 1 > 12) {
+              $next = 1;
+              $next_year = $year + 1;
+
+            } else {
+              $next = $month + 1;
+              $next_year = $year;
+            }
+
+            echo "<div class='block-table'>";
+            echo "<div class='item-header' style='color: red;'>Sun.</div>";
+            echo "<div class='item-header'>Mon.</div>";
+            echo "<div class='item-header'>Tue.</div>";
+            echo "<div class='item-header'>Wed.</div>";
+            echo "<div class='item-header'>Thu.</div>";
+            echo "<div class='item-header'>Fri.</div>";
+            echo "<div class='item-header' style='color: red;'>Sat.</div>";
+            foreach ($days as $day) {
+              $format = explode("-", $day)[2];
+              $w = date("w", strtotime($day));
+              $m = date("m", strtotime($day));
+              if ($month != $m) {
+                echo "<div class='item othermday'>$format</div>";
+              } else if ($w == 0 || $w == 6) {
+                echo "<div class='item holiday'>$format</div>";
+              } else {
+
+                echo "<div class='item'>";
+                echo "<div class='date'>$format</div>";
+                echo "</div>";
+              }
+            }
+            echo "</div>";
+            ?>
+          </div>
         </div>
 
-        <div class="rightbox-tottom">
+        <div class="rightbox-bottom">
 
         </div>
       </div>

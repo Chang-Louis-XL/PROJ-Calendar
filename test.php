@@ -76,23 +76,38 @@
         .rightbox {
             width: 47%;
             height: 650px;
-            display: flex;
-            flex-direction: column;
             background-color: lightgoldenrodyellow;
 
         }
 
         .rightbox-top {
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
             height: 15%;
             background-color: gray
+            
         }
+
+
+        .nav1 {
+            background-color: yellow; 
+        }
+
+        .nav2 {
+            background-color: red; 
+        }
+
+        .nav3 {
+            background-color: blue;
+        }
+
 
         .rightbox-middle {
             height: 70%;
-            /* justify-content: center;
-      align-items: center; */
             background-color: aqua;
-            margin: auto;
+            text-align: center;
         }
 
         .rightbox-tottom {
@@ -166,25 +181,44 @@
             </div>
             <div class="rightbox">
 
+                <?php
+                $month = $_GET['month'] ?? date("m");
+                $year = $_GET['year'] ?? date("Y");
+
+                if ($month - 1 < 1) {
+                    $prev = 12;
+                    $prev_year = $year - 1;
+                } else {
+                    $prev = $month - 1;
+                    $prev_year = $year;
+                }
+
+                if ($month + 1 > 12) {
+                    $next = 1;
+                    $next_year = $year + 1;
+
+                } else {
+                    $next = $month + 1;
+                    $next_year = $year;
+                }
+
+                ?>
+
                 <div class="rightbox-top">
-
-                    <div class="month">
-                        <form action="" method="get" class="poetsen-one-regular">
-                            <label for="year">Year：</label>
-                            <input type="number" name="year" id="year" value="<?= date("Y"); ?>" style="width:70px">
-                            <label for="month">Month：</label>
-                            <input type="number" name="month" id="month" value="<?= date("m"); ?>" min="1" max="12">
-                            <input type="submit" value="submit">
-                        </form>
+                    <div class="nav nav1">
+                        <a href="test.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">上一個月</a>
                     </div>
-
-
-
+                    <div class="nav nav2">
+                        <?= $year; ?>年 <?= $month; ?>月
+                    </div>
+                    <div class="nav nav3">
+                        <a href="test.php?year=<?= $next_year; ?>&month=<?= $next; ?>">下一個月</a>
+                    </div>
                 </div>
+
                 <div class="rightbox-middle">
                     <?php
-                    $month = $_GET['month'] ?? date("m");
-                    $year = $_GET['year'] ?? date("Y");
+
                     $firstDay = strtotime(date("$year-$month-1"));
                     $firstWeekStartDay = date("w", $firstDay);
                     $days = date("t", $firstDay);
@@ -195,37 +229,6 @@
                         $diff = $i - $firstWeekStartDay;
                         $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
                     }
-
-                    if ($month - 1 < 1) {
-                        $prev = 12;
-                        $prev_year = $year - 1;
-                    } else {
-                        $prev = $month - 1;
-                        $prev_year = $year;
-                    }
-
-                    if ($month + 1 > 12) {
-                        $next = 1;
-                        $next_year = $year + 1;
-
-                    } else {
-                        $next = $month + 1;
-                        $next_year = $year;
-                    }
-
-                    ?>
-
-
-
-               
-                    <?= $year; ?>年<?= str_pad($month, 2, '0', STR_PAD_LEFT); ?>月
-                  
-
-
-
-
-
-                    <?php
 
                     echo "<div class='block-table'>";
                     echo "<div class='item-header' style='color: red;'>Sun.</div>";
@@ -253,10 +256,11 @@
                     echo "</div>";
                     ?>
                 </div>
-            </div>
 
-            <div class="rightbox-tottom">
 
+                <div class="rightbox-tottom">
+
+                </div>
             </div>
         </div>
     </div>
