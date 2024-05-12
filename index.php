@@ -27,6 +27,8 @@
             padding: 60px;
             background-color: #FEFEFE;
             box-shadow: 9px 11px 11px 3px black;
+            background-image: url('https://i.pinimg.com/564x/1b/ff/98/1bff98f304f47b83f0a5c96f48e2f443.jpg');
+            background-size: cover;
         }
 
 
