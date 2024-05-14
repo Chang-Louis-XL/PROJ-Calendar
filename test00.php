@@ -184,66 +184,67 @@
                     $firstWeekStartDay = date("w", $firstDay);
                     $days = date("t", $firstDay);
                     $lastDay = strtotime(date("Y-$month-$days"));
-                    $bfYear = $year <= 2025;
-                    $festivalFor2024 = [
-                        "1" => [
-                            "1" => "元旦",
+                    $festival = [
+                        "2024" => [
+                            "1" => [
+                                "1" => "元旦",
+                            ],
+                            "2" => [
+                                "28" => "228紀念日",
+                            ],
+                            "4" => [
+                                "4" => "清明節",
+                            ],
+                            "5" => [
+                                "1" => "勞動節",
+                            ],
+                            "6" => [
+                                "8" => "端午節",
+                                "9" => "端午節",
+                                "10" => "端午節",
+                            ],
+                            "9" => [
+                                "9" => "中秋節",
+                            ],
+                            "10" => [
+                                "10" => "國慶日",
+                            ],
+                            "12" => [
+                                "25" => "聖誕節",
+                                "31" => "跨年夜",
+                            ],
+                            // 其他月份的節日資訊
                         ],
-                        "2" => [
-                            "28" => "228紀念日",
-                        ],
-                        "4" => [
-                            "4" => "清明節",
-                        ],
-                        "5" => [
-                            "1" => "勞動節",
-                        ],
-                        "6" => [
-                            "8" => "端午節",
-                            "9" => "端午節",
-                            "10" => "端午節",
-                        ],
-                        "9" => [
-                            "9" => "中秋節"
-                        ],
-                        "10" => [
-                            "10" => "國慶日"
-                        ],
-                        "12" => [
-                            "25" => "聖誕節",
-                            "31" => "跨年夜"
+                        "2025" => [
+                            "1" => [
+                                "1" => "元旦",
+                            ],
+                            "2" => [
+                                "28" => "228紀念日",
+                            ],
+                            "4" => [
+                                "4" => "清明節",
+                            ],
+                            "5" => [
+                                "1" => "勞動節",
+                            ],
+                            "6" => [
+                                "14" => "端午節",
+                                "15" => "端午節",
+                                "16" => "端午節",
+                            ],
+                            "9" => [
+                                "8" => "中秋節",
+                            ],
+                            "10" => [
+                                "10" => "國慶日",
+                            ],
+                            "12" => [
+                                "25" => "聖誕節",
+                                "31" => "跨年夜",
+                            ],
                         ],
                     ];
-                    $festivalFor2025 = [
-                        "1" => [
-                            "1"=> "元旦",
-                        ],
-                        "2" => [
-                            "28"=> "228紀念日",
-                        ],
-                        "4" => [
-                            "4"=> "清明節",
-                        ],
-                        "5" => [
-                            "1"=> "勞動節",
-                        ],
-                        "6"  =>[
-                            "14"=> "端午節",  
-                            "15"=> "端午節",   
-                            "16"=> "端午節", 
-                        ],
-                        "9" => [
-                            "8" => "中秋節"
-                        ],
-                        "10" => [
-                            "10" => "國慶日"
-                        ],
-                        "12" => [
-                            "25" => "聖誕節",
-                            "31" => "跨年夜"
-                        ],
-                    ];
-
                     $days = [];
                     for ($i = 0; $i < 42; $i++) {
                         $diff = $i - $firstWeekStartDay;
@@ -269,7 +270,7 @@
                     ?>
                     <div class="calendar-top">
                         <div class="nav1">
-                            <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
+                            <a href="test00.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
                                 <img src="./images/left_submit_icon.png" alt="Previous" />
                             </a>
                         </div>
@@ -277,11 +278,9 @@
                             <?= $fmonth; ?>-<?= $year; ?>
                         </div>
                         <div class="nav3">
-                            <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
+                            <a href="test00.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
                                 <img src="./images/right_submit_icon.png" alt="Previous" />
                             </a>
-
-
                         </div>
                     </div>
                     <div class="calendar">
@@ -298,22 +297,53 @@
                             $format = explode("-", $day)[2];
                             $w = date("w", strtotime($day));
                             $m = date("m", strtotime($day));
+                            $Y = date("Y", ($firstDay));
+                            $n = date("n", ($firstDay));
+                            $isfestival = false;
+                            $daymonth = explode("-", $day)[1];
+                            $dayyear = explode("-", $day)[0];
                             if ($month != $m) {
                                 echo "<div class='item othermday'>$format</div>";
-                            } else if ($w == 0 || $w == 6) {
-                                echo "<div class='item holiday'>$format</div>";
-                            } else {
-
-                                echo "<div class='item'>";
-                                echo "<div class='date'>$format</div>";
-                                echo "</div>";
                             }
+                            // foreach ($festival[$Y] as $festivalMonth => $festivalDates) {
+                            //     foreach ($festivalDates as $festivalDate => $festivalName) {
+                            //         if ($festivalDate == $format && $month == $n && $year == $Y) {
+                            //             echo "<div class='item holiday'>$format $festivalName</div>";
+                            //         }
+                            //         $isfestival = true;
+                            //     }
+                            // }
+                        
+                            
+                            // foreach ($festival[$Y] as $festivalMonth => $festivalDates) {
+                            //     foreach ($festivalDates as $festivalDate => $festivalName) {
+                            //         if ($festivalDate == $format && $month == $daymonth && $year == $$festival[$Y]) {
+                            //             echo "<div class='item holiday'>$format $festivalName</div>";
+                            //         }
+                        
+                            foreach ($festival as $festivalYear[$Y] => $festivalMonth) {
+                                foreach ($festivalMonth as $festivalDate => $festivalName) {
+                                    if ($festivalDate == $format && $month == $daymonth && $year == $festivalYear) {
+                                        echo "<div class='item holiday'>$format $festivalName</div>";
+                                        // echo "$format.$festivalName";
+                                    }
+                                    $isfestival = true;
+                                   
+                                }
+                            }
+                            if (!$isfestival) {
+                                if ($w == 0 || $w == 6) {
+                                    echo "<div class='item holiday'>$format</div>";
+                                } else {
+
+                                    echo "<div class='item'>";
+                                    echo "<div class='date'>$format</div>";
+                                    echo "</div>";
+                                }
+                            }
+                            $isfestival = false;
                         }
                         echo "</div>";
-
-
-
-                        foreach
                         ?>
                     </div>
                 </div>
