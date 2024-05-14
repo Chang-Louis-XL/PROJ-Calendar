@@ -74,7 +74,7 @@
             padding-top: 30px;
             text-align: center;
             /* background-color: yellowgreen; */
-            
+
         }
 
         .calendar-top {
@@ -175,56 +175,116 @@
             </div>
             <div class="rightbox">
                 <div class="rightbox-top">
-                    
-                        <?php
-                        $month = $_GET['month'] ?? date("m");
-                        $year = $_GET['year'] ?? date("Y");
-                        $fmonth = date("F", strtotime("$year-$month"));
-                        $firstDay = strtotime(date("$year-$month-1"));
-                        $firstWeekStartDay = date("w", $firstDay);
-                        $days = date("t", $firstDay);
-                        $lastDay = strtotime(date("Y-$month-$days"));
-                        $days = [];
-                        for ($i = 0; $i < 42; $i++) {
-                            $diff = $i - $firstWeekStartDay;
-                            $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
-                        }
 
-                        if ($month - 1 < 1) {
-                            $prev = 12;
-                            $prev_year = $year - 1;
-                        } else {
-                            $prev = $month - 1;
-                            $prev_year = $year;
-                        }
+                    <?php
+                    $month = $_GET['month'] ?? date("m");
+                    $year = $_GET['year'] ?? date("Y");
+                    $fmonth = date("F", strtotime("$year-$month"));
+                    $firstDay = strtotime(date("$year-$month-1"));
+                    $firstWeekStartDay = date("w", $firstDay);
+                    $days = date("t", $firstDay);
+                    $lastDay = strtotime(date("Y-$month-$days"));
+                    $bfYear = $year <= 2025;
+                    $festivalFor2024 = [
+                        "1" => [
+                            "1" => "元旦",
+                        ],
+                        "2" => [
+                            "28" => "228紀念日",
+                        ],
+                        "4" => [
+                            "4" => "清明節",
+                        ],
+                        "5" => [
+                            "1" => "勞動節",
+                        ],
+                        "6" => [
+                            "8" => "端午節",
+                            "9" => "端午節",
+                            "10" => "端午節",
+                        ],
+                        "9" => [
+                            "9" => "中秋節"
+                        ],
+                        "10" => [
+                            "10" => "國慶日"
+                        ],
+                        "12" => [
+                            "25" => "聖誕節",
+                            "31" => "跨年夜"
+                        ],
+                    ];
+                    $festivalFor2025 = [
+                        "1" => [
+                            "1"=> "元旦",
+                        ],
+                        "2" => [
+                            "28"=> "228紀念日",
+                        ],
+                        "4" => [
+                            "4"=> "清明節",
+                        ],
+                        "5" => [
+                            "1"=> "勞動節",
+                        ],
+                        "6"  =>[
+                            "14"=> "端午節",  
+                            "15"=> "端午節",   
+                            "16"=> "端午節", 
+                        ],
+                        "9" => [
+                            "8" => "中秋節"
+                        ],
+                        "10" => [
+                            "10" => "國慶日"
+                        ],
+                        "12" => [
+                            "25" => "聖誕節",
+                            "31" => "跨年夜"
+                        ],
+                    ];
 
-                        if ($month + 1 > 12) {
-                            $next = 1;
-                            $next_year = $year + 1;
+                    $days = [];
+                    for ($i = 0; $i < 42; $i++) {
+                        $diff = $i - $firstWeekStartDay;
+                        $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
+                    }
 
-                        } else {
-                            $next = $month + 1;
-                            $next_year = $year;
-                        }
-                        ?>
-                        <div class="calendar-top">
-                            <div class="nav1">
-                                <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
+                    if ($month - 1 < 1) {
+                        $prev = 12;
+                        $prev_year = $year - 1;
+                    } else {
+                        $prev = $month - 1;
+                        $prev_year = $year;
+                    }
+
+                    if ($month + 1 > 12) {
+                        $next = 1;
+                        $next_year = $year + 1;
+
+                    } else {
+                        $next = $month + 1;
+                        $next_year = $year;
+                    }
+                    ?>
+                    <div class="calendar-top">
+                        <div class="nav1">
+                            <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
                                 <img src="./images/left_submit_icon.png" alt="Previous" />
                             </a>
-                            </div>
-                            <div class="nav2">
+                        </div>
+                        <div class="nav2">
                             <?= $fmonth; ?>-<?= $year; ?>
-                            </div>
-                            <div class="nav3">
-                                <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
+                        </div>
+                        <div class="nav3">
+                            <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
                                 <img src="./images/right_submit_icon.png" alt="Previous" />
                             </a>
 
-                            
-                            </div>
+
                         </div>
-                        <div class="calendar">
+                    </div>
+                    <div class="calendar">
                         <?php
                         echo "<div class='block-table'>";
                         echo "<div class='item-header' style='color: red;'>Sun.</div>";
@@ -250,6 +310,10 @@
                             }
                         }
                         echo "</div>";
+
+
+
+                        foreach
                         ?>
                     </div>
                 </div>
