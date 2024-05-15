@@ -74,7 +74,7 @@
             padding-top: 30px;
             text-align: center;
             /* background-color: yellowgreen; */
-
+            
         }
 
         .calendar-top {
@@ -175,115 +175,56 @@
             </div>
             <div class="rightbox">
                 <div class="rightbox-top">
+                    
+                        <?php
+                        $month = $_GET['month'] ?? date("m");
+                        $year = $_GET['year'] ?? date("Y");
+                        $fmonth = date("F", strtotime("$year-$month"));
+                        $firstDay = strtotime(date("$year-$month-1"));
+                        $firstWeekStartDay = date("w", $firstDay);
+                        $days = date("t", $firstDay);
+                        $lastDay = strtotime(date("Y-$month-$days"));
+                        $days = [];
+                        for ($i = 0; $i < 42; $i++) {
+                            $diff = $i - $firstWeekStartDay;
+                            $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
+                        }
 
-                    <?php
-                    $month = $_GET['month'] ?? date("m");
-                    $year = $_GET['year'] ?? date("Y");
-                    $fmonth = date("F", strtotime("$year-$month"));
-                    $firstDay = strtotime(date("$year-$month-1"));
-                    $firstWeekStartDay = date("w", $firstDay);
-                    $days = date("t", $firstDay);
-                    $lastDay = strtotime(date("Y-$month-$days"));
-                    $festival = [
-                        "2024" => [
-                            "1" => [
-                                "1" => "元旦",
-                            ],
-                            "2" => [
-                                "28" => "228紀念日",
-                            ],
-                            "4" => [
-                                "4" => "清明節",
-                            ],
-                            "5" => [
-                                "1" => "勞動節",
-                            ],
-                            "6" => [
-                                "8" => "端午節",
-                                "9" => "端午節",
-                                "10" => "端午節",
-                            ],
-                            "9" => [
-                                "9" => "中秋節",
-                            ],
-                            "10" => [
-                                "10" => "國慶日",
-                            ],
-                            "12" => [
-                                "25" => "聖誕節",
-                                "31" => "跨年夜",
-                            ],
-                            // 其他月份的節日資訊
-                        ],
-                        "2025" => [
-                            "1" => [
-                                "1" => "元旦",
-                            ],
-                            "2" => [
-                                "28" => "228紀念日",
-                            ],
-                            "4" => [
-                                "4" => "清明節",
-                            ],
-                            "5" => [
-                                "1" => "勞動節",
-                            ],
-                            "6" => [
-                                "14" => "端午節",
-                                "15" => "端午節",
-                                "16" => "端午節",
-                            ],
-                            "9" => [
-                                "8" => "中秋節",
-                            ],
-                            "10" => [
-                                "10" => "國慶日",
-                            ],
-                            "12" => [
-                                "25" => "聖誕節",
-                                "31" => "跨年夜",
-                            ],
-                        ],
-                    ];
-                    $days = [];
-                    for ($i = 0; $i < 42; $i++) {
-                        $diff = $i - $firstWeekStartDay;
-                        $days[] = date("Y-m-d", strtotime("$diff days", $firstDay));
-                    }
+                        if ($month - 1 < 1) {
+                            $prev = 12;
+                            $prev_year = $year - 1;
+                        } else {
+                            $prev = $month - 1;
+                            $prev_year = $year;
+                        }
 
-                    if ($month - 1 < 1) {
-                        $prev = 12;
-                        $prev_year = $year - 1;
-                    } else {
-                        $prev = $month - 1;
-                        $prev_year = $year;
-                    }
+                        if ($month + 1 > 12) {
+                            $next = 1;
+                            $next_year = $year + 1;
 
-                    if ($month + 1 > 12) {
-                        $next = 1;
-                        $next_year = $year + 1;
-
-                    } else {
-                        $next = $month + 1;
-                        $next_year = $year;
-                    }
-                    ?>
-                    <div class="calendar-top">
-                        <div class="nav1">
-                            <a href="test01.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
+                        } else {
+                            $next = $month + 1;
+                            $next_year = $year;
+                        }
+                        ?>
+                        <div class="calendar-top">
+                            <div class="nav1">
+                                <a href="inde.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
                                 <img src="./images/left_submit_icon.png" alt="Previous" />
                             </a>
-                        </div>
-                        <div class="nav2">
+                            </div>
+                            <div class="nav2">
                             <?= $fmonth; ?>-<?= $year; ?>
-                        </div>
-                        <div class="nav3">
-                            <a href="test01.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
+                            </div>
+                            <div class="nav3">
+                                <a href="inde.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
                                 <img src="./images/right_submit_icon.png" alt="Previous" />
                             </a>
+
+                            
+                            </div>
                         </div>
-                    </div>
-                    <div class="calendar">
+                        <div class="calendar">
                         <?php
                         echo "<div class='block-table'>";
                         echo "<div class='item-header' style='color: red;'>Sun.</div>";
@@ -297,36 +238,15 @@
                             $format = explode("-", $day)[2];
                             $w = date("w", strtotime($day));
                             $m = date("m", strtotime($day));
-                            $Y = date("Y", strtotime($day));
-                            $n = date("n", strtotime($firstDay));
-                            $diffMonth = false;
-                            $isfestival = false;
-                            $daymonth = explode("-", $day)[1];
-                            $dayyear = explode("-", $day)[0];
                             if ($month != $m) {
                                 echo "<div class='item othermday'>$format</div>";
-                                $diffMonth = true;
-                            }
-                            foreach ($festival[$Y] as $festivalMonth => $festivalDates) {
-                                // echo $festivalMonth;
-                                // echo "<br>";
-                                // print_r($festivalDates);
-                                foreach ($festivalDates as $festivalDate => $festivalName) {
-                                    if ($festivalDate == $format && $m == $festivalMonth && $dayyear == $Y && !$diffMonth ) {
-                                        echo "<div class='item holiday'>$format $festivalName</div>";
-                                    }
-                                    $isfestival = true;
-                                    $isfestival = false;
-                                }
-                            }
-                            if (!$isfestival && !$diffMonth) {
-                                if ($w == 0 || $w == 6) {
-                                    echo "<div class='item holiday'>$format</div>";
-                                } else {
-                                    echo "<div class='item'>";
-                                    echo "<div class='date'>$format</div>";
-                                    echo "</div>";
-                                }
+                            } else if ($w == 0 || $w == 6) {
+                                echo "<div class='item holiday'>$format</div>";
+                            } else {
+
+                                echo "<div class='item'>";
+                                echo "<div class='date'>$format</div>";
+                                echo "</div>";
                             }
                         }
                         echo "</div>";

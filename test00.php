@@ -321,9 +321,9 @@
                             //             echo "<div class='item holiday'>$format $festivalName</div>";
                             //         }
                         
-                            foreach ($festival as $festivalYear[$Y] => $festivalMonth) {
-                                foreach ($festivalMonth as $festivalDate => $festivalName) {
-                                    if ($festivalDate == $format && $month == $daymonth && $year == $festivalYear) {
+                            foreach ($festival[$Y] as  $festivalMonth => $festivalDates) {
+                                foreach ($festivalDates as $festivalDate => $festivalName) {
+                                    if ($festivalDate == $format && $month == $daymonth && $year == $$festival[$Y]) {
                                         echo "<div class='item holiday'>$format $festivalName</div>";
                                         // echo "$format.$festivalName";
                                     }
