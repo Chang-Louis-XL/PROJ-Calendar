@@ -81,11 +81,20 @@ if (array_key_exists($year, $festival)) {
     foreach ($festival[$year] as $month => $days) {
         // 遍歷該月份的所有日期
         foreach ($days as $day => $holiday) {
-            echo "{$year}年{$month}月{$day}日：{$holiday}\n <br>";
+            // echo "{$year}年{$month}月{$day}日：{$holiday}\n <br>";
+            // echo "{$holiday}";
+            // echo "<br>";
+            var_dump($days);
+            echo "<br>";
         }
+        // echo "{$holiday}";
+        // print_r($day) ;
+        // echo "<br>";
+        // var_dump($days);
+        // echo "<br>";
     }
 } else {
-    echo "沒有{$year}年的節日資訊。\n";
+    echo "沒有{$year}年的節日資訊。\n <br>";
 }
 
 ?>
