@@ -23,10 +23,10 @@
             margin: auto;
             margin-top: 15px;
             border: 1px solid transparent;
-            border-radius: 60px;
+            border-radius: 16px;
             padding: 60px;
             background-color: #FEFEFE;
-            box-shadow: 9px 11px 11px 3px black;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
             background-image: url('https://i.pinimg.com/564x/1b/ff/98/1bff98f304f47b83f0a5c96f48e2f443.jpg');
             background-size: cover;
         }
@@ -43,17 +43,20 @@
 
         .leftbox {
             margin: 0;
-            border-radius: 60px;
+            border-radius: 16px;
             box-shadow: 3px 4px 12px 0px #7A7567;
-            background: url(https://picsum.photos/600/500?random=1)no-repeat center center;
+            /* background: url(https://picsum.photos/600/500?random=1)no-repeat center center; */
+            background: linear-gradient(45deg, #f8f9f4 30%, #c4e2d8 30%);
             background-size: cover;
             width: 47%;
             height: 600px;
             /* background-color: aqua; */
 
         }
-
-
+        .leftbox >img{
+            width: 100%;
+            height: 100%;
+        }
 
         .rightbox {
             width: 47%;
@@ -161,6 +164,18 @@
             color: gray;
             opacity: 0.3;
         }
+
+        /* .sytle-p2 {
+            background-image: url(./images/back/p1.jpg);
+            background-image: url(./images/back/p2.jpg);
+            background-image: url(./images/back/p3.jpg);
+            background-image: url(./images/back/p4.jpg);
+            background-image: url(./images/back/p5.jpg);
+            background-image: url(./images/back/p6.jpg);
+            background-image: url(./images/back/p7.jpg);
+            background-image: url(./images/back/p8.jpg);
+            background-size: cover;
+        } */
     </style>
 </head>
 
@@ -172,6 +187,41 @@
     <div class="container">
         <div class="row">
             <div class="leftbox">
+                <?php
+                $m = $_GET['month'];
+                $images = [
+                    // "1" => "sytle-p1",
+                    // "2" => "sytle-p2",
+                    // "3" => "sytle-p3",
+                    // "4" => "sytle-p4",
+                    // "5" => "sytle-p5",
+                    // "6" => "sytle-p6",
+                    // "7" => "sytle-p7",
+                    // "8" => "sytle-p8",
+                    // "9" => "sytle-p9",
+                    // "10" => "sytle-p10",
+                    // "11" => "sytle-p11",
+                    // "12" => "sytle-p12",
+                
+                    "1" => "./images/back/p1.jpg",
+                    "2" => "./images/back/p2.jpg",
+                    "3" => "./images/back/p3.jpg",
+                    "4" => "./images/back/p4.jpg",
+                    "5" => "./images/back/p5.jpg",
+                    "6" => "./images/back/p6.jpg",
+                    "7" => "./images/back/p7.jpg",
+                    "8" => "./images/back/p8.jpg",
+                    "9" => "./images/back/p9.jpg",
+                    "10" => "./imagesback/p10.jpg",
+                    "11" => "./imagesback/p11.jpg",
+                    "12" => "./imagesback/p12.jpg"
+                ];
+                ?>
+                <!-- class 裡的 -->
+                <!-- <div class="leftbox <?php echo $images[$m]; ?>"> -->
+                <!-- 在DIV裡的 -->
+                <img src="<?php echo $images[$m]; ?>" alt="">
+
             </div>
             <div class="rightbox">
                 <div class="rightbox-top">
@@ -184,67 +234,6 @@
                     $firstWeekStartDay = date("w", $firstDay);
                     $days = date("t", $firstDay);
                     $lastDay = strtotime(date("Y-$month-$days"));
-                    $festival = [
-                        "2024" => [
-                            "1" => [
-                                "1" => "元旦",
-                            ],
-                            "2" => [
-                                "28" => "228紀念日",
-                            ],
-                            "4" => [
-                                "4" => "清明節",
-                            ],
-                            "5" => [
-                                "1" => "勞動節",
-                            ],
-                            "6" => [
-                                "8" => "端午節",
-                                "9" => "端午節",
-                                "10" => "端午節",
-                            ],
-                            "9" => [
-                                "9" => "中秋節",
-                            ],
-                            "10" => [
-                                "10" => "國慶日",
-                            ],
-                            "12" => [
-                                "25" => "聖誕節",
-                                "31" => "跨年夜",
-                            ],
-                            // 其他月份的節日資訊
-                        ],
-                        "2025" => [
-                            "1" => [
-                                "1" => "元旦",
-                            ],
-                            "2" => [
-                                "28" => "228紀念日",
-                            ],
-                            "4" => [
-                                "4" => "清明節",
-                            ],
-                            "5" => [
-                                "1" => "勞動節",
-                            ],
-                            "6" => [
-                                "14" => "端午節",
-                                "15" => "端午節",
-                                "16" => "端午節",
-                            ],
-                            "9" => [
-                                "8" => "中秋節",
-                            ],
-                            "10" => [
-                                "10" => "國慶日",
-                            ],
-                            "12" => [
-                                "25" => "聖誕節",
-                                "31" => "跨年夜",
-                            ],
-                        ],
-                    ];
                     $days = [];
                     for ($i = 0; $i < 42; $i++) {
                         $diff = $i - $firstWeekStartDay;
@@ -285,6 +274,20 @@
                     </div>
                     <div class="calendar">
                         <?php
+                        $holidays = [
+                            "2024-01-01" => "元旦",
+                            "2024-02-10" => "農曆新年除夕",
+                            "2024-02-11" => "農曆新年初一",
+                            "2024-02-12" => "農曆新年初二",
+                            "2024-02-28" => "和平紀念日",
+                            "2024-04-04" => "兒童節",
+                            "2024-04-05" => "清明節",
+                            "2024-05-01" => "勞動節",
+                            "2024-06-10" => "端午節",
+                            "2024-09-17" => "中秋節",
+                            "2024-10-10" => "國慶日"
+                        ];
+
                         echo "<div class='block-table'>";
                         echo "<div class='item-header' style='color: red;'>Sun.</div>";
                         echo "<div class='item-header'>Mon.</div>";
@@ -297,51 +300,19 @@
                             $format = explode("-", $day)[2];
                             $w = date("w", strtotime($day));
                             $m = date("m", strtotime($day));
-                            $Y = date("Y", ($firstDay));
-                            $n = date("n", ($firstDay));
-                            $isfestival = false;
-                            $daymonth = explode("-", $day)[1];
-                            $dayyear = explode("-", $day)[0];
+                            // echo $day ;
+                            // print_r($day[0]) ;
                             if ($month != $m) {
                                 echo "<div class='item othermday'>$format</div>";
+                            } else if (array_key_exists($day, $holidays)) {
+                                echo "<div class='item holiday'>$format  $holidays[$day]</div>";
+                            } else if ($w == 0 || $w == 6) {
+                                echo "<div class='item holiday'>$format</div>";
+                            } else {
+                                echo "<div class='item'>";
+                                echo "<div class='date'>$format</div>";
+                                echo "</div>";
                             }
-                            // foreach ($festival[$Y] as $festivalMonth => $festivalDates) {
-                            //     foreach ($festivalDates as $festivalDate => $festivalName) {
-                            //         if ($festivalDate == $format && $month == $n && $year == $Y) {
-                            //             echo "<div class='item holiday'>$format $festivalName</div>";
-                            //         }
-                            //         $isfestival = true;
-                            //     }
-                            // }
-                        
-                            
-                            // foreach ($festival[$Y] as $festivalMonth => $festivalDates) {
-                            //     foreach ($festivalDates as $festivalDate => $festivalName) {
-                            //         if ($festivalDate == $format && $month == $daymonth && $year == $$festival[$Y]) {
-                            //             echo "<div class='item holiday'>$format $festivalName</div>";
-                            //         }
-                        
-                            foreach ($festival[$Y] as  $festivalMonth => $festivalDates) {
-                                foreach ($festivalDates as $festivalDate => $festivalName) {
-                                    if ($festivalDate == $format && $month == $daymonth && $year == $$festival[$Y]) {
-                                        echo "<div class='item holiday'>$format $festivalName</div>";
-                                        // echo "$format.$festivalName";
-                                    }
-                                    $isfestival = true;
-                                   
-                                }
-                            }
-                            if (!$isfestival) {
-                                if ($w == 0 || $w == 6) {
-                                    echo "<div class='item holiday'>$format</div>";
-                                } else {
-
-                                    echo "<div class='item'>";
-                                    echo "<div class='date'>$format</div>";
-                                    echo "</div>";
-                                }
-                            }
-                            $isfestival = false;
                         }
                         echo "</div>";
                         ?>
