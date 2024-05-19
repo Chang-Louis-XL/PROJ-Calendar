@@ -21,10 +21,10 @@
         .container {
             width: 60%;
             margin: auto;
-            margin-top: 15px;
+            margin-top: 40px;
             border: 1px solid transparent;
             border-radius: 16px;
-            padding: 60px;
+            padding: 50px;
             background-color: #FEFEFE;
             box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
             background-image: url('https://i.pinimg.com/564x/1b/ff/98/1bff98f304f47b83f0a5c96f48e2f443.jpg');
@@ -53,7 +53,8 @@
             /* background-color: aqua; */
 
         }
-        .leftbox >img{
+
+        .leftbox>img {
             width: 100%;
             height: 100%;
         }
@@ -107,6 +108,48 @@
             text-align: right;
         }
 
+
+        .calendar-top2>form {
+            /* border-collapse: collapse; */
+            /* background-color: pink; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .nav4>select {
+            margin: 0 10px;
+            border-collapse: collapse;
+            font-family: 'PT Serif', serif;
+            background-color: white;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            padding: 0 1em 0 0;
+            width: 70px;
+            font-size: 15px;
+            color: #2c3e50;
+
+        }
+
+        .nav5>.enter_y {
+            margin: 0 10px;
+            border-collapse: collapse;
+            font-family: 'PT Serif', serif;
+            background-color: white;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+
+        .nav6 >.btn{
+            margin: 0 10px;
+        }
+
+
         .rightbox-bottom {
             height: 15%;
             /* background-color: pink */
@@ -114,7 +157,7 @@
 
         /* 以下為萬年曆CSS */
         .block-table {
-            width: 380px;
+            width: 397px;
             display: flex;
             flex-wrap: wrap;
         }
@@ -123,8 +166,8 @@
             margin-left: -1px;
             margin-top: -1px;
             display: inline-block;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border: 1px solid gray;
             /* position: relative; */
             transition: all 0.3s;
@@ -135,7 +178,7 @@
             margin-left: -1px;
             margin-top: -1px;
             display: inline-block;
-            width: 50px;
+            width: 55px;
             height: 25px;
             /* border: 1px solid black; */
             text-align: center;
@@ -272,6 +315,40 @@
                             </a>
                         </div>
                     </div>
+                    <div class="calendar-top2">
+                        <form action="" method="get">
+                            <div class="nav4">
+                                <select name="month">
+                                    <option value="1">Jan.</option>
+                                    <option value="2">Feb.</option>
+                                    <option value="3">Mar.</option>
+                                    <option value="4">Apr.</option>
+                                    <option value="5">May.</option>
+                                    <option value="6">Jun.</option>
+                                    <option value="7">Jul.</option>
+                                    <option value="8">Aug.</option>
+                                    <option value="9">Sep.</option>
+                                    <option value="10">Oct.</option>
+                                    <option value="11">Nov.</option>
+                                    <option value="12">Dec.</option>
+                                </select>
+                            </div>
+                            <div class="nav5">
+                                <input class="enter_y" type="number" name="year" value="<?= date("Y"); ?>" min="100"
+                                    max="9999" placeholder="請輸入年份" required="">
+                            </div>
+                            <div class="nav6">
+                                <input class="btn" type="submit" value="GO">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="month">
+                        <form action="" method="get">
+                            <input type="number" name="year" id="year" value="<?= date("Y"); ?>" style="width:70px">
+                            <input type="number" name="month" id="month" value="<?= date("m"); ?>" min="1" max="12">
+                            <input type="submit" value="submit">
+                        </form>
+                    </div> -->
                     <div class="calendar">
                         <?php
                         $holidays = [

@@ -27,7 +27,8 @@
             padding: 60px;
             background-color: #FEFEFE;
             box-shadow: 9px 11px 11px 3px black;
-            background-image: url('./images/bg.jpg');
+            /* background-image: url('./images/bg.jpg'); */
+            background-image: url('https://i.pinimg.com/564x/1b/ff/98/1bff98f304f47b83f0a5c96f48e2f443.jpg');
             background-size: cover;    
         }
 
@@ -45,15 +46,20 @@
             margin: 0;
             border-radius: 60px;
             box-shadow: 3px 4px 12px 0px #7A7567;
-            background: url(https://picsum.photos/600/500?random=1)no-repeat center center;
+            /* background: url(https://picsum.photos/600/500?random=1)no-repeat center center; */
             background-size: cover;
             width: 47%;
             height: 600px;
             /* background-color: aqua; */
+            overflow: hidden;
 
         }
 
-
+        .leftbox>img {
+            width: 100%;
+            height: 100%;
+            
+        }
 
         .rightbox {
             width: 47%;
@@ -104,6 +110,47 @@
             text-align: right;
         }
 
+        .calendar-top2>form {
+            /* border-collapse: collapse; */
+            /* background-color: pink; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .nav4>select {
+            margin: 0 10px;
+            border-collapse: collapse;
+            font-family: 'PT Serif', serif;
+            background-color: white;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            padding: 0 1em 0 0;
+            width: 70px;
+            font-size: 15px;
+            color: #2c3e50;
+
+        }
+
+        .nav5>.enter_y {
+            margin: 0 10px;
+            border-collapse: collapse;
+            font-family: 'PT Serif', serif;
+            background-color: white;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+
+        .nav6 >.btn{
+            margin: 0 10px;
+        }
+
+
         .rightbox-bottom {
             height: 15%;
             /* background-color: pink */
@@ -111,7 +158,7 @@
 
         /* 以下為萬年曆CSS */
         .block-table {
-            width: 380px;
+            width: 397px;
             display: flex;
             flex-wrap: wrap;
         }
@@ -120,8 +167,8 @@
             margin-left: -1px;
             margin-top: -1px;
             display: inline-block;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border: 1px solid gray;
             /* position: relative; */
             transition: all 0.3s;
@@ -132,7 +179,7 @@
             margin-left: -1px;
             margin-top: -1px;
             display: inline-block;
-            width: 50px;
+            width: 55px;
             height: 25px;
             /* border: 1px solid black; */
             text-align: center;
@@ -150,9 +197,6 @@
             transition: all 0.3s;
             z-index: 10;
         }
-
-
-
 
         .holiday {
             background: pink;
@@ -175,10 +219,30 @@
     <div class="container">
         <div class="row">
             <div class="leftbox">
+            <?php
+                $m = $_GET['month'];
+                $images = [
+
+                    "1" => "./images/back/p1.jpg",
+                    "2" => "./images/back/p2.jpg",
+                    "3" => "./images/back/p3.jpg",
+                    "4" => "./images/back/p4.jpg",
+                    "5" => "./images/back/p5.jpg",
+                    "6" => "./images/back/p6.jpg",
+                    "7" => "./images/back/p7.jpg",
+                    "8" => "./images/back/p81.jpg",
+                    "9" => "./images/back/p9.jpg",
+                    "10" => "./images/back/p10.jpg",
+                    "11" => "./images/back/p11.jpg",
+                    "12" => "./images/back/p12.jpg"
+                ];
+                ?>
+
+                <img src="<?php echo $images[$m];?>" alt="">
+
             </div>
             <div class="rightbox">
                 <div class="rightbox-top">
-
                     <?php
                     $month = $_GET['month'] ?? date("m");
                     $year = $_GET['year'] ?? date("Y");
@@ -223,24 +287,115 @@
                             <a href="inde.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
                                 <img src="./images/right_submit_icon.png" alt="Previous" />
                             </a>
-
-
                         </div>
+                    </div>
+                    <div class="calendar-top2">
+                        <form action="" method="get">
+                            <div class="nav4">
+                                <select name="month">
+                                    <option value="1">Jan.</option>
+                                    <option value="2">Feb.</option>
+                                    <option value="3">Mar.</option>
+                                    <option value="4">Apr.</option>
+                                    <option value="5">May.</option>
+                                    <option value="6">Jun.</option>
+                                    <option value="7">Jul.</option>
+                                    <option value="8">Aug.</option>
+                                    <option value="9">Sep.</option>
+                                    <option value="10">Oct.</option>
+                                    <option value="11">Nov.</option>
+                                    <option value="12">Dec.</option>
+                                </select>
+                            </div>
+                            <div class="nav5">
+                                <input class="enter_y" type="number" name="year" value="<?= date("Y"); ?>" min="100"
+                                    max="9999" placeholder="請輸入年份" required="">
+                            </div>
+                            <div class="nav6">
+                                <input class="btn" type="submit" value="GO">
+                            </div>
+                        </form>
                     </div>
                     <div class="calendar">
                         <?php
                         $Festival = [
+                            // 2022年
+                            "2022-01-01" => "元旦",
+                            "2022-01-31" => "除夕",
+                            "2022-02-01" => "初一",
+                            "2022-02-02" => "初二",
+                            "2022-02-28" => "和平紀念日",
+                            "2022-04-04" => "兒童節",
+                            "2022-04-05" => "清明節",
+                            "2022-05-01" => "勞動節",
+                            "2022-06-03" => "端午節",
+                            "2022-09-10" => "中秋節",
+                            "2022-10-10" => "國慶日",
+                            
+                            // 2023年
+                            "2023-01-01" => "元旦",
+                            "2023-01-21" => "除夕",
+                            "2023-01-22" => "初一",
+                            "2023-01-23" => "初二",
+                            "2023-02-28" => "和平紀念日",
+                            "2023-04-04" => "兒童節",
+                            "2023-04-05" => "清明節",
+                            "2023-05-01" => "勞動節",
+                            "2023-06-22" => "端午節",
+                            "2023-09-29" => "中秋節",
+                            "2023-10-10" => "國慶日",
+                            
+                            // 2024年
                             "2024-01-01" => "元旦",
-                            "2024-02-10" => "農曆新年除夕",
-                            "2024-02-11" => "農曆新年初一",
-                            "2024-02-12" => "農曆新年初二",
+                            "2024-02-09" => "除夕",
+                            "2024-02-10" => "初一",
+                            "2024-02-11" => "初二",
                             "2024-02-28" => "和平紀念日",
                             "2024-04-04" => "兒童節",
                             "2024-04-05" => "清明節",
                             "2024-05-01" => "勞動節",
                             "2024-06-10" => "端午節",
                             "2024-09-17" => "中秋節",
-                            "2024-10-10" => "國慶日"
+                            "2024-10-10" => "國慶日",
+                            
+                            // 2025年
+                            "2025-01-01" => "元旦",
+                            "2025-01-28" => "除夕",
+                            "2025-01-29" => "初一",
+                            "2025-01-30" => "初二",
+                            "2025-02-28" => "和平紀念日",
+                            "2025-04-04" => "兒童節",
+                            "2025-04-05" => "清明節",
+                            "2025-05-01" => "勞動節",
+                            "2025-05-31" => "端午節",
+                            "2025-09-06" => "中秋節",
+                            "2025-10-10" => "國慶日",
+                            
+                            // 2026年
+                            "2026-01-01" => "元旦",
+                            "2026-02-16" => "除夕",
+                            "2026-02-17" => "初一",
+                            "2026-02-18" => "初二",
+                            "2026-02-28" => "和平紀念日",
+                            "2026-04-04" => "兒童節",
+                            "2026-04-05" => "清明節",
+                            "2026-05-01" => "勞動節",
+                            "2026-06-19" => "端午節",
+                            "2026-09-25" => "中秋節",
+                            "2026-10-10" => "國慶日",
+                            
+                            // 2027年
+                            "2027-01-01" => "元旦",
+                            "2027-02-05" => "除夕",
+                            "2027-02-06" => "初一",
+                            "2027-02-07" => "初二",
+                            "2027-02-28" => "和平紀念日",
+                            "2027-04-04" => "兒童節",
+                            "2027-04-05" => "清明節",
+                            "2027-05-01" => "勞動節",
+                            "2027-06-09" => "端午節",
+                            "2027-09-15" => "中秋節",
+                            "2027-10-10" => "國慶日"
                         ];
 
                         echo "<div class='block-table'>";
@@ -259,7 +414,7 @@
                             if ($month != $m) {
                                 echo "<div class='item othermday'>$format</div>";
                             } else if (array_key_exists($day, $Festival)) {
-                                echo "<div class='item holiday'>$format <br>"."<span style='font-size:12px;color:white'>$Festival[$day]</span></div>";
+                                echo "<div class='item holiday'>$format <br>"."<span style= 'font-size:10px'>$Festival[$day]</span></div>";
                                 
                             } else if ($w == 0 || $w == 6) {
                                 echo "<div class='item holiday'>$format</div>";
