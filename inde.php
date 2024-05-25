@@ -29,7 +29,7 @@
             box-shadow: 9px 11px 11px 3px black;
             /* background-image: url('./images/bg.jpg'); */
             background-image: url('https://i.pinimg.com/564x/1b/ff/98/1bff98f304f47b83f0a5c96f48e2f443.jpg');
-            background-size: cover;    
+            background-size: cover;
         }
 
 
@@ -58,7 +58,7 @@
         .leftbox>img {
             width: 100%;
             height: 100%;
-            
+
         }
 
         .rightbox {
@@ -146,7 +146,7 @@
             color: #2c3e50;
         }
 
-        .nav6 >.btn{
+        .nav6>.btn {
             margin: 0 10px;
         }
 
@@ -206,7 +206,7 @@
             font-weight: bold;
             color: gray;
             opacity: 0.3;
-            
+
         }
     </style>
 </head>
@@ -219,10 +219,12 @@
     <div class="container">
         <div class="row">
             <div class="leftbox">
-            <?php
-                $m = $_GET['month'];
+                <?php
+                // if ($_GET['month'] == null) {
+                //     $images = date("m", strtotime($day));
+                // } else 
+                $m = $_GET['month'] ?? date("n");
                 $images = [
-
                     "1" => "./images/back/p1.jpg",
                     "2" => "./images/back/p2.jpg",
                     "3" => "./images/back/p3.jpg",
@@ -230,7 +232,7 @@
                     "5" => "./images/back/p5.jpg",
                     "6" => "./images/back/p6.jpg",
                     "7" => "./images/back/p7.jpg",
-                    "8" => "./images/back/p81.jpg",
+                    "8" => "./images/back/p8.jpg",
                     "9" => "./images/back/p9.jpg",
                     "10" => "./images/back/p10.jpg",
                     "11" => "./images/back/p11.jpg",
@@ -238,7 +240,7 @@
                 ];
                 ?>
 
-                <img src="<?php echo $images[$m];?>" alt="">
+                <img src="<?php echo $images[$m]; ?>" alt="">
 
             </div>
             <div class="rightbox">
@@ -331,7 +333,7 @@
                             "2022-06-03" => "端午節",
                             "2022-09-10" => "中秋節",
                             "2022-10-10" => "國慶日",
-                            
+
                             // 2023年
                             "2023-01-01" => "元旦",
                             "2023-01-21" => "除夕",
@@ -344,7 +346,7 @@
                             "2023-06-22" => "端午節",
                             "2023-09-29" => "中秋節",
                             "2023-10-10" => "國慶日",
-                            
+
                             // 2024年
                             "2024-01-01" => "元旦",
                             "2024-02-09" => "除夕",
@@ -357,7 +359,7 @@
                             "2024-06-10" => "端午節",
                             "2024-09-17" => "中秋節",
                             "2024-10-10" => "國慶日",
-                            
+
                             // 2025年
                             "2025-01-01" => "元旦",
                             "2025-01-28" => "除夕",
@@ -370,7 +372,7 @@
                             "2025-05-31" => "端午節",
                             "2025-09-06" => "中秋節",
                             "2025-10-10" => "國慶日",
-                            
+
                             // 2026年
                             "2026-01-01" => "元旦",
                             "2026-02-16" => "除夕",
@@ -383,7 +385,7 @@
                             "2026-06-19" => "端午節",
                             "2026-09-25" => "中秋節",
                             "2026-10-10" => "國慶日",
-                            
+
                             // 2027年
                             "2027-01-01" => "元旦",
                             "2027-02-05" => "除夕",
@@ -414,8 +416,8 @@
                             if ($month != $m) {
                                 echo "<div class='item othermday'>$format</div>";
                             } else if (array_key_exists($day, $Festival)) {
-                                echo "<div class='item holiday'>$format <br>"."<span style= 'font-size:10px'>$Festival[$day]</span></div>";
-                                
+                                echo "<div class='item holiday'>$format <br>" . "<span style= 'font-size:10px'>$Festival[$day]</span></div>";
+
                             } else if ($w == 0 || $w == 6) {
                                 echo "<div class='item holiday'>$format</div>";
                             } else {
