@@ -278,7 +278,7 @@
                     ?>
                     <div class="calendar-top">
                         <div class="nav1">
-                            <a href="inde.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
+                            <a href="index.php?year=<?= $prev_year; ?>&month=<?= $prev; ?>">
                                 <img src="./images/left_submit_icon.png" alt="Previous" />
                             </a>
                         </div>
@@ -286,7 +286,7 @@
                             <?= $fmonth; ?>-<?= $year; ?>
                         </div>
                         <div class="nav3">
-                            <a href="inde.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
+                            <a href="index.php?year=<?= $next_year; ?>&month=<?= $next; ?>">
                                 <img src="./images/right_submit_icon.png" alt="Previous" />
                             </a>
                         </div>
